@@ -1,0 +1,204 @@
+body{
+	background: lightgray;
+	margin: 0;
+	padding: 0;
+}
+
+.box{
+	top: 10%;
+	background: cornflowerblue;
+	height: 400px;
+	width: 50%;
+	left: 20%;
+	position: absolute;
+}
+
+.list{
+	background: lightcoral;
+	height: 100%;
+	width: 25%;
+	float: left;
+	position:absolute ;
+}
+.head{
+	height: 10%;
+	width: 100%;
+	
+	background: lightseagreen;
+}
+.detil{
+	height: 70%;
+	width: 50%;
+	position: absolute;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+.group_detil{
+	height: 70%;
+	width: 50%;
+	left: 50%;
+	position: absolute;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+.date_frind_detail{
+position: relative;	
+height: 19%;
+width: 98%;
+/*float: left;*/
+background: lightgreen;	
+border:1px solid black;
+}
+
+.date_group_detail{
+	text-align: left;
+position: relative;
+height: 19%;
+width: 97%;
+	font-size: 10px;
+/*float: left;*/
+background: yellow;
+border:1px solid black;
+}
+
+/*.icon{*/
+	/*height: 80%;*/
+	/*top: 10%;*/
+	/*left: 10%;*/
+	/*position: relative;*/
+	/*width: 40%;*/
+	/*background: white;*/
+	/*float: left;*/
+	/*text-align: center;*/
+/*}*/
+.user_name{
+	position: relative;
+	color: red;
+	left:15%;
+	margin: 0;
+	padding: 0;
+}
+.user_id{
+	top: 10%;
+	position: relative;
+	left:15%;
+	color: red;
+	margin: 0;
+	padding: 0;
+}
+
+.next_page{
+	top: 70%;
+	text-align: center;
+	height: 5%;
+	width: 100%;
+	background: lightsteelblue;
+	position: relative;
+}
+
+.foot{
+	height: 15%;
+	
+	top: 70%;
+	position: relative;
+	width: 100%;
+	background: lightslategray;
+}
+.windows{
+	position: relative;
+	height: 100%;
+	width: 75%;
+	left: 25%;	
+}
+
+.title{
+	position: relative;
+	height: 10%;
+	width: 98%;
+	background: dodgerblue;
+}
+.show{
+	position: relative;
+	height: 75%;
+	width: 98%;
+	background: white;
+	overflow:auto;
+}
+.show_left{
+	position: relative;
+	width: 50%;
+	height: 100%;
+	float: left;
+}
+.show_right{
+	position: relative;
+	float: left;
+	width: 50%;
+	height: 100%;
+	background: lightskyblue;
+}
+
+.text{
+	position: relative;
+	height: 15%;
+	/*top: 60%;*/
+	width: 98%;
+	background: dodgerblue;
+}
+
+.text_box{
+	position: relative;
+	float: left;
+	top: 20%;
+	left: 10%;
+	width: 60%;
+	height: 50%;
+}
+.send_button{
+	top: 13%;
+	position: relative;
+	margin-left: 20%;
+	height: 40%;
+}
+._clear{
+	top: 29%;
+	position: relative;
+	margin-left: 20%;
+	height: 40%;
+}
+.title_text{
+	text-align: center;
+	font-family: "微软雅黑";
+	margin: 0;
+}
+.add_text{
+	top: 10%;
+	width: 70%;
+	left: 15%;
+	position: relative;
+}
+.add{
+	top: 5%;
+	position: relative;
+	left: 15%;
+}
+
+
+
+
+.friends{
+	width: 45%;
+	float: left;
+	top: 20%;
+	position: relative;
+	background: yellow;
+}
+.groups{
+	top: 20%;
+	width: 45%;
+	margin-left: 10%;
+	float: left;
+	background: yellow;
+	position: relative;
+}
+

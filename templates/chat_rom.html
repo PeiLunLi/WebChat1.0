@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>网络聊天室</title>
+		<link rel="stylesheet" href="{{static_url('css/chat_rom.css')}}" />
+		 <script type="text/javascript" charset="utf-8" src="{{static_url('js/jquery.min.js')}}"></script>
+		<script type="text/javascript" charset="utf-8"  src="{{static_url('js/chat_rom.js')}}" ></script>
+	</head>
+	<body>
+		<div class="box">
+			<div class="list">
+				<div class="head">
+					<div class="friends">Friends</div>
+					<div class="groups">Groups</div>
+				</div>
+				<div class="detil" id="detil">
+
+					<div class="date_frind_detail">
+						<!--<div class="icon">假装有头像</div>-->
+						<p class="user_name">*:{{stus['user_detail']['name']}}</p>
+						<p class="user_id">*:{{stus['user_detail']['user']}}</p>
+
+					</div>
+					{% for frind in stus['frinds'] %}
+					<div class="date_frind_detail" id="date_detail" >
+						<!--<div class="icon">假装有头像</div>-->
+						<p class="user_name" style="color: black">{{frind['name']}}</p>
+						<p class="user_id" id="user_id" style="color: black">{{frind['user']}}</p>
+					</div>
+					{% end %}
+				</div>
+
+				<div class="group_detil" id="group_detil">
+
+
+					{% for _group in stus['groups'] %}
+					<div class="date_group_detail" id="date_group_detail" >
+						<!--<div class="icon">假装有头像</div>-->
+						<p class="user_name" style="color: black">{{_group['name']}}</p>
+						<p class="user_id" id="group_id" style="color: black">{{_group['number']}}</p>
+					</div>
+					{% end %}
+				</div>
+
+
+				<div class="next_page">欢迎{{stus['user_detail']['name']}}登陆</div>
+				<div class="foot">
+					<input type="text" id="add_message" class="add_text" />
+					<div class="add">
+					 <button class="add_frind" id="add_frind">加好友</button>
+					 <button class="add_group" id="add_group">加群聊</button>
+					</div>
+				</div>
+			</div>
+			<div class="windows">
+				<div class="title">
+					<p class="title_text">Chat With {{stus['chat_with']['name']}}...</p>
+				</div>
+				<div class="show" id="contents">
+					<div class="show_left" id="show_left"></div>
+					<div class="show_right" id="show_right"></div>
+				</div>
+				<div class="text">
+					<input type="text"  id="message" class="text_box" />
+					 <button class="send_button" id="sendMessage" onclick="sendMessage()">发送</button>
+					<button class="send_button" id="_clear" onclick="_clear()">清屏</button>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>

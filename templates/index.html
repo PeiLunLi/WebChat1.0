@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        div{
+            width: 500px;
+            height: auto;
+            border: 10px solid red;
+            margin:100px auto;
+            /*添加边框图片*/
+            border-image-source: url("../images/btn_bg.png");
+            /*设置受保护的区域大小*/
+            border-image-slice: 10 fill;
+            /*设置边框图片的宽度
+            1.明确圆角的大小
+            2.明确受保护的区域的大小*/
+            border-image-width: 10px;
+            /*设置背景平铺效果  默认是stretch：拉伸 宽要和上面的边框的宽度一致*/
+            border-image-repeat: stretch;
+        }
+    </style>
+</head>
+<body>
+<div>边框图片的本质是背景，并不会影响元素内容的放置边框图片的本质是背景，并不会影响元素内容的放置边框图片的本质是背景，并不会影响元素内容的放置边框图片的本质是背景，并不会影响元素内容的放置边框图片的本质是背景，并不会影响元素内容的放置边框图片的本质是背景，并不会影响元素内容的放置边框图片的本质是背景，并不会影响元素内容的放置边框图片的本质是背景，并不会影响元素内容的放置边框图片的本质是背景，并不会影响元素内容的放置边框图片的本质是背景，并不会影响元素内容的放置</div>
+</body>
+</html>
