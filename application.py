@@ -1,7 +1,11 @@
 import tornado.web
+
 import config
 from views import index
+
+
 class Application(tornado.web.Application):
+    
     def __init__(self):
         urls ={
             #主页
