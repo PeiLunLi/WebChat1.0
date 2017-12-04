@@ -2,18 +2,31 @@ from tornado import escape
 from tornado.web import RequestHandler
 from tornado.websocket import WebSocketHandler
 import tornado.web
+
 from models import user,groups,user_group,user_user
+
 #主页
 class HomeHandler(RequestHandler):
 
     def get(self, *args, **kwargs):
+        '''
+        获取主页
+        '''
         self.render('chat_online.html')
 
 #注册
 class RegisterHandler(RequestHandler):
+    
     def get(self, *args, **kwargs):
+        '''
+        返回注册页
+        '''
         self.render('register.html')
+        
     def post(self, *args, **kwargs):
+        '''
+        提交注册
+        '''
         stus =user.all()
         name = self.get_argument('name')
         userid = self.get_argument('user')
@@ -31,12 +44,15 @@ class RegisterHandler(RequestHandler):
                 stu.save()
                 self.redirect('/login')
                 break
+                
 #登陆验证
 class LoginHandler(RequestHandler):
+    
     def get(self, *args, **kwargs):
         next = self.get_argument('next','/')
         url = '/login?next=' + next
-        self.render('login.html',url = url)
+        self.render('login.html',url=url)
+        
     def post(self, *args, **kwargs):
         name = self.get_argument('username')
         passwd = self.get_argument('passwd')
@@ -47,7 +63,7 @@ class LoginHandler(RequestHandler):
 
                     self.set_cookie('user', str(stu['user']))
 
-                    next = self.get_argument('next','/')
+                    next = self.get_argument('next', '/')
                     if next == '/':
                         self.redirect('/chatromshow')
                         break
@@ -67,13 +83,20 @@ class LoginHandler(RequestHandler):
 #聊天室
 class ChatRomShowHandler(RequestHandler):
     def get_current_user(self):
+        '''
+        获取当前用户
+        '''
         flag = self.get_argument("flag", None)
         _cookie = self.get_cookie("user",None)
         # print(_cookie)
         if flag or _cookie:
             return True
+        
     @tornado.web.authenticated
     def get(self, *args, **kwargs):
+        '''
+        渲染页面
+        '''
         chat_with_id = self.get_argument('user_id',None)
         chat_group_id = self.get_argument('group_id', None)
 
@@ -123,10 +146,14 @@ class ChatRomShowHandler(RequestHandler):
 
         self.render('chat_rom.html',stus = stus)
 
+        
 class ChatStartHandler(WebSocketHandler):
     users = []
 
     def open(self, *args, **kwargs):
+        '''
+        当建立连接
+        '''
         # 将登陆的用户存储到用户列表
         self.users.append(self)
         self.cookie = self.get_cookie('user')
@@ -151,6 +178,9 @@ class ChatStartHandler(WebSocketHandler):
                     u.write_message("[%s]开始聊天" % (name))
 
     def on_close(self):
+        '''
+        当关闭
+        '''
         self.users.remove(self)
         for chat in self.chat_id:
             for u in self.users:
@@ -160,6 +190,9 @@ class ChatStartHandler(WebSocketHandler):
                     u.write_message("[%s]离开聊天" % (name))
 
     def on_message(self, message):
+        '''
+        当发消息
+        '''
         for chat in self.chat_id:
             for u in self.users:
                 cookiess = u.get_cookie('user')
@@ -176,6 +209,9 @@ class ChatStartHandler(WebSocketHandler):
 #添加
 class AddFrindHandler(RequestHandler):
     def get(self, *args, **kwargs):
+        '''
+        添加好友
+        '''
         user_id = self.get_cookie('user')
         frinds_id = self.get_argument("number", None)
         stu = user_user(user_id, frinds_id)
@@ -186,6 +222,9 @@ class AddFrindHandler(RequestHandler):
 
 class AddGroupHandler(RequestHandler):
     def get(self, *args, **kwargs):
+        '''
+        添加群
+        '''
         user_id = self.get_cookie('user')
         group_id = self.get_argument("number", None)
         stu2 = user_group(group_id,user_id)
@@ -198,6 +237,9 @@ class AddGroupHandler(RequestHandler):
 #聊天
 class ShowChatHandler(RequestHandler):
     def get_current_user(self):
+        '''
+        获取当前用户
+        '''
         flag = self.get_argument("flag", None)
         _cookie = self.get_cookie("user",None)
         if flag or _cookie:
@@ -219,11 +261,16 @@ class ChatHandler(WebSocketHandler):
         for u in self.users:
             u.write_message("[%s]登陆聊天室"%(self.cookie))
     def on_close(self):
+        '''
+        关闭聊天室
+        '''
         self.users.remove(self)
         for u in self.users:
             u.write_message("[%s]离开聊天室"%(self.request.remote_ip))
     def on_message(self, message):
-
+        '''
+        发消息
+        '''
         for u in self.users:
             u.write_message("[%s]说：%s"%(self.cookie, message))
     def check_origin(self,origin):
